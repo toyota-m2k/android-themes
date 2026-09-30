@@ -1,14 +1,14 @@
 <resources>
-    <color name="orange_theme_primary">#FFB77A</color>
-    <color name="orange_theme_onPrimary">#4C2700</color>
-    <color name="orange_theme_primaryContainer">#6B3B05</color>
+    <color name="orange_theme_primary">#FFC17E</color>
+    <color name="orange_theme_onPrimary">#960003</color>
+    <color name="orange_theme_primaryContainer">#960003</color>
     <color name="orange_theme_onPrimaryContainer">#FFDCC2</color>
     <color name="orange_theme_secondary">#D4C871</color>
     <color name="orange_theme_onSecondary">#363100</color>
     <color name="orange_theme_secondaryContainer">#4F4800</color>
     <color name="orange_theme_onSecondaryContainer">#F1E48A</color>
-    <color name="orange_theme_tertiary">#B8CF84</color>
-    <color name="orange_theme_onTertiary">#253500</color>
+    <color name="orange_theme_tertiary">#D5F57F</color>
+    <color name="orange_theme_onTertiary">#1B2600</color>
     <color name="orange_theme_tertiaryContainer">#3A4D10</color>
     <color name="orange_theme_onTertiaryContainer">#D3EC9E</color>
     <color name="orange_theme_error">#FFB4AB</color>
@@ -26,11 +26,11 @@
     <color name="orange_theme_scrim">#000000</color>
     <color name="orange_theme_inverseSurface">#EFE0D6</color>
     <color name="orange_theme_inverseOnSurface">#382F28</color>
-    <color name="orange_theme_inversePrimary">#88511D</color>
+    <color name="orange_theme_inversePrimary">#960003</color>
     <color name="orange_theme_primaryFixed">#FFDCC2</color>
-    <color name="orange_theme_onPrimaryFixed">#2E1500</color>
-    <color name="orange_theme_primaryFixedDim">#FFB77A</color>
-    <color name="orange_theme_onPrimaryFixedVariant">#6B3B05</color>
+    <color name="orange_theme_onPrimaryFixed">#960003</color>
+    <color name="orange_theme_primaryFixedDim">#FFC17E</color>
+    <color name="orange_theme_onPrimaryFixedVariant">#960003</color>
     <color name="orange_theme_secondaryFixed">#F1E48A</color>
     <color name="orange_theme_onSecondaryFixed">#201C00</color>
     <color name="orange_theme_secondaryFixedDim">#D4C871</color>
