@@ -40,18 +40,14 @@ class ColorVariationDialog : UtDialogEx() {
     }
 
     companion object {
-        fun show(settings: IThemeSettings) {
+        fun show(settings: IThemeSettings, preferRestart:Boolean=false) {
             UtImmortalTask.launchTask(this::class.java.name) {
                 createViewModel<ColorVariationViewModel> { initialize(settings) }
                 if (showDialog(taskName) { ColorVariationDialog() }.status.ok ) {
                     withOwner {
                         val activity = it.asActivity() as? UtMortalActivity ?: return@withOwner
-                        if (settings.themeDelegate.isThemeChanged(settings.themeData, settings.contrastLevel)) {
-                            activity.startActivity(Intent(activity, activity::class.java))
-                            activity.finish()
-                        } else {
-                            settings.themeDelegate.applyNightMode(settings.dayNightMode)
-                        }
+                        val applyMode = if (preferRestart) ThemeDelegate.ApplyMode.RESTART else ThemeDelegate.ApplyMode.RECREATE
+                        settings.themeDelegate.applyTheme(activity, settings.themeData, settings.contrastLevel, settings.dayNightMode, applyMode)
                     }
                 }
             }

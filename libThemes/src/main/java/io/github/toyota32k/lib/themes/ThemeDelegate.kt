@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.FragmentActivity
 import io.github.toyota32k.utils.UtLib
 
-class ThemeDelegate {
+class ThemeDelegate() {
     companion object {
         /**
          * UtLib.initialize()を呼び出す
@@ -24,8 +24,6 @@ class ThemeDelegate {
 
     var currentThemeId:Int = -1
         private set
-
-    val currentNightMode:NightMode get() = NightMode.ofMode(AppCompatDelegate.getDefaultNightMode()) ?: NightMode.System
 
     private fun getSystemContrastLevel(): ContrastLevel {
         return try {
@@ -64,19 +62,42 @@ class ThemeDelegate {
         } ?: theme.id
     }
 
-    fun isThemeChanged(theme: ThemeData, contrastLevel: ContrastLevel): Boolean {
-        return currentThemeId != resolveThemeId(theme, contrastLevel)
+    enum class ApplyMode {
+        RECREATE,
+        RESTART,
+        NONE,
+        ;
+        fun action(activity: Activity):Boolean {
+            return when (this) {
+                RECREATE -> {
+                    activity.recreate()
+                    true
+                }
+                RESTART -> {
+                    activity.finish()
+                    activity.startActivity(activity.intent)
+                    true
+                }
+                NONE -> { false }
+            }
+        }
     }
 
-    fun applyTheme(theme: ThemeData, contrastLevel: ContrastLevel, activity: Activity) {
-        val themeId = resolveThemeId(theme, contrastLevel)
-        activity.setTheme(themeId)
-        currentThemeId = themeId
-    }
-
-    fun applyNightMode(nightMode: NightMode) {
-        if(AppCompatDelegate.getDefaultNightMode()!=nightMode.mode) {
+    fun applyTheme(activity: Activity, theme: ThemeData, contrastLevel: ContrastLevel, nightMode: NightMode, applyMode: ApplyMode= ApplyMode.RECREATE):Boolean {
+        val newThemeId = resolveThemeId(theme, contrastLevel)
+        if (currentThemeId != newThemeId) {
+            if (applyMode.action(activity)) {
+                return true
+            }
+            currentThemeId = newThemeId
+            activity.setTheme(newThemeId)
+        }
+        if (AppCompatDelegate.getDefaultNightMode() != nightMode.mode) {
+            if (applyMode.action(activity)) {
+                return true
+            }
             AppCompatDelegate.setDefaultNightMode(nightMode.mode)
         }
+        return false
     }
 }
