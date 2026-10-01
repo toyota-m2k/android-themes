@@ -38,7 +38,6 @@ abstract class AbstractThemeSettings(
     protected open fun save() {}
 
     fun applyTheme(activity: Activity) {
-        themeDelegate.applyNightMode(dayNightMode)
-        themeDelegate.applyTheme(themeData, contrastLevel, activity)
+        themeDelegate.applyTheme(activity,themeData, contrastLevel, dayNightMode, ThemeDelegate.ApplyMode.NONE)
     }
 }

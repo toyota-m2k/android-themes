@@ -1,8 +1,8 @@
 <resources>
-    <color name="orange_theme_primary">#88511D</color>
+    <color name="orange_theme_primary">#960003</color>
     <color name="orange_theme_onPrimary">#FFFFFF</color>
     <color name="orange_theme_primaryContainer">#FFDCC2</color>
-    <color name="orange_theme_onPrimaryContainer">#6B3B05</color>
+    <color name="orange_theme_onPrimaryContainer">#960003</color>
     <color name="orange_theme_secondary">#685F12</color>
     <color name="orange_theme_onSecondary">#FFFFFF</color>
     <color name="orange_theme_secondaryContainer">#F1E48A</color>
@@ -28,9 +28,9 @@
     <color name="orange_theme_inverseOnSurface">#FEEEE4</color>
     <color name="orange_theme_inversePrimary">#FFB77A</color>
     <color name="orange_theme_primaryFixed">#FFDCC2</color>
-    <color name="orange_theme_onPrimaryFixed">#2E1500</color>
-    <color name="orange_theme_primaryFixedDim">#FFB77A</color>
-    <color name="orange_theme_onPrimaryFixedVariant">#6B3B05</color>
+    <color name="orange_theme_onPrimaryFixed">#960003</color>
+    <color name="orange_theme_primaryFixedDim">#FFC17E</color>
+    <color name="orange_theme_onPrimaryFixedVariant">#960003</color>
     <color name="orange_theme_secondaryFixed">#F1E48A</color>
     <color name="orange_theme_onSecondaryFixed">#201C00</color>
     <color name="orange_theme_secondaryFixedDim">#D4C871</color>
