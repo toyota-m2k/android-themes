@@ -1,7 +1,6 @@
 package io.github.toyota32k.lib.themes
 
 import android.app.Activity
-import androidx.fragment.app.FragmentActivity
 
 
 abstract class AbstractThemeSettings(
@@ -38,6 +37,6 @@ abstract class AbstractThemeSettings(
     protected open fun save() {}
 
     fun applyTheme(activity: Activity) {
-        themeDelegate.applyTheme(activity,themeData, contrastLevel, dayNightMode, ThemeDelegate.ApplyMode.NONE)
+        themeDelegate.applyTheme(activity,themeData, contrastLevel, dayNightMode, ThemeDelegate.ApplyMode.IMMEDIATE)
     }
 }

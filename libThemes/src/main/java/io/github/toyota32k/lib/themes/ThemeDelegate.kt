@@ -4,10 +4,10 @@ import android.app.Activity
 import android.content.Context
 import android.provider.Settings
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.fragment.app.FragmentActivity
+import io.github.toyota32k.logger.UtLog
 import io.github.toyota32k.utils.UtLib
 
-class ThemeDelegate() {
+class ThemeDelegate {
     companion object {
         /**
          * UtLib.initialize()を呼び出す
@@ -18,6 +18,7 @@ class ThemeDelegate() {
         }
         val defaultDelegate: ThemeDelegate = ThemeDelegate()
     }
+    val logger = UtLog("Theme",null, ThemeDelegate::class.java)
 
     val applicationContext: Context
         get() = UtLib.applicationContext
@@ -65,7 +66,7 @@ class ThemeDelegate() {
     enum class ApplyMode {
         RECREATE,
         RESTART,
-        NONE,
+        IMMEDIATE,
         ;
         fun action(activity: Activity):Boolean {
             return when (this) {
@@ -78,26 +79,23 @@ class ThemeDelegate() {
                     activity.startActivity(activity.intent)
                     true
                 }
-                NONE -> { false }
+                IMMEDIATE -> { false }
             }
         }
     }
 
-    fun applyTheme(activity: Activity, theme: ThemeData, contrastLevel: ContrastLevel, nightMode: NightMode, applyMode: ApplyMode= ApplyMode.RECREATE):Boolean {
+    fun applyTheme(activity: Activity, theme: ThemeData, contrastLevel: ContrastLevel, nightMode: NightMode, applyMode: ApplyMode= ApplyMode.RECREATE) {
         val newThemeId = resolveThemeId(theme, contrastLevel)
-        if (currentThemeId != newThemeId) {
+        if (currentThemeId!=newThemeId) {
             if (applyMode.action(activity)) {
-                return true
+                logger.info("applying theme: to be recreated or restarted")
+                return
             }
-            currentThemeId = newThemeId
-            activity.setTheme(newThemeId)
         }
-        if (AppCompatDelegate.getDefaultNightMode() != nightMode.mode) {
-            if (applyMode.action(activity)) {
-                return true
-            }
-            AppCompatDelegate.setDefaultNightMode(nightMode.mode)
-        }
-        return false
+
+        currentThemeId = newThemeId
+        activity.setTheme(newThemeId)
+        AppCompatDelegate.setDefaultNightMode(nightMode.mode)
+        logger.info("applied theme")
     }
 }
